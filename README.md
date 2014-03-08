@@ -87,6 +87,14 @@ Changes:
 * Checkout page not secured
 
 
+Google Hosting
+--------------
+
+JSP Web module: https://sylvan-cycle-510.appspot.com/index
+
+HTML5 module: https://sylvan-cycle-510.appspot.com/index2.html
+
+
 Outro
 -----
 
