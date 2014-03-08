@@ -1,0 +1,144 @@
+<div id="singleColumn">
+
+	<div ng-if="cart.items > 0">
+		Your shopping cart contains {{cart.items}} item(s)
+	</div>
+
+	<div ng-if="cart.items == 0">
+		Your shopping cart is empty
+	</div>
+
+	<div id="actionBar">
+
+		<!--clear cart widget -->
+		<span ng-if="cart.items > 0">
+			<a href="#/cart?clear=true" class="bubble hMargin">clear cart</a>
+		</span>
+
+		<!--continue shopping widget-->
+		<span ng-if="selectedCategory > 0">
+			<a href="#/category/{{selectedCategory}}" class="bubble hMargin">
+				continue shopping
+			</a>
+		</span>
+
+		<span ng-if="selectedCategory === null">
+			<a href="#/main" class="bubble hMargin">
+				continue shopping
+			</a>
+		</span>
+
+		<!--checkout widget-->
+		<span ng-if="cart.items > 0">
+			<a href="#/checkout" class="bubble hMargin">
+				proceed to checkout&#x279f;
+			</a>
+		</span>
+
+	</div>
+
+	<div ng-if="cart.items > 0">
+
+		<h4 id="subtotal">subtotal: {{cart.subtotal| currency:"&euro;"}}
+		</h4>
+
+		<table id="cartTable">
+
+			<tr class="header">
+				<th>product</th>
+				<th>name</th>
+				<th>price</th>
+				<th>quantity</th>
+			</tr>
+
+			<tr ng-repeat="item in cartItems| filter:query | orderBy:orderProp" 
+					ng-class-odd="'lightBlue'" ng-class-even="'white'">
+
+				<td>
+					<img src="img/products/{{item.name}}.png" alt="{{item.name}}">						
+				</td>
+
+				<td>
+					{{item.name}}
+				</td>
+
+				<td>
+					{{item.total| currency:"&euro;"}}
+
+					<br>
+					<span class="smallText">({{item.price| currency:"&euro;"}} / unit )
+					</span>
+				</td>
+
+				<td>
+					<form name="cartForm" class="css-form form-horizontal" novalidate 
+								role="form" >
+
+						<div class="form-group">
+							<div class="col-sm-10">
+								<input type="number" class="form-control"
+											 name="quantity"
+											 ng-model="item.qty"
+											 ng-minlength=1
+											 ng-maxlength=2									 
+											 size="2"												 
+											 required
+											 style="margin:5px">
+
+								<div ng-show="cartForm.quantity.$dirty
+												&& cartForm.quantity.$invalid">
+									Enter a valid number (0 clears item)
+								</div>	
+
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-10">
+								<button class="btn btn-primary btn-sm"
+												ng-click="updateCart(item.product, item.qty)"
+												ng-disabled="cartForm.$invalid || isUnchanged(quantity)">
+									update
+								</button>	
+							</div>
+						</div>
+					</form>		
+				</td>
+			</tr>
+		</table>
+
+		<br>
+
+		<div class="form-group" style="width: 500px;	margin-left: 125px">
+			<label for="filter" class="col-sm-2 control-label">
+				filter products
+			</label>
+
+			<div class="col-sm-10 input-group">
+				<input type="text" class="form-control" name="filter"
+							 ng-minlength=1
+							 ng-maxlength=20
+							 ng-model="query"							 
+							 placeholder="Search on name, description or price">
+			</div>
+		</div>	
+
+		<br>
+		<div class="form-group" style="width: 500px;	margin-left: 125px">
+			<label for="sort" class="col-sm-2 control-label">
+				order
+			</label>
+
+			<div class="col-sm-10">
+				<select class="form-control" ng-model="orderProp" name="sort">
+					<option value="name">A-Z</option>
+					<option value="-name">Z-A</option>
+					<option value="price">price low-high</option>
+					<option value="-price">price high-low</option>
+				</select>
+			</div>
+		</div>	
+
+		<br>
+	</div>
+</div>

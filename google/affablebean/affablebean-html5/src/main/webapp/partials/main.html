@@ -1,0 +1,22 @@
+<br>
+
+<div id="indexLeftColumn">
+	<div id="welcomeText">
+		<p style="font-size: larger">Welcome to the online home of the Affable Bean Green Grocer.</p>
+		<p>Our unique home delivery service brings you fresh organic produce, dairy, meats, breads and other delicious and healthy items direct to your doorstep.</p>
+	</div>
+</div>
+
+<div id="indexRightColumn">
+	<span ng-repeat="category in categories">
+		<span class="categoryBox">
+			<a href="#/category/{{category.id}}">
+				<span class="categoryLabel"></span>
+				<span class="categoryLabelText">{{category.name}}</span>
+
+				<img src="img/categories/{{category.name}}.jpg"
+						 alt="{{category.name}}" class="categoryImage">
+			</a>			
+		</span>
+	</span>
+</div>

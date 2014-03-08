@@ -1,0 +1,125 @@
+<div id="categoryLeftColumn">
+	<span ng-repeat="category in categories">
+
+		<div ng-if="category.id == selectedCategory">
+			<div class="categoryButton" id="selectedCategory">
+				<span class="categoryText">
+					{{category.name}}
+				</span>
+			</div>
+		</div>
+
+		<div ng-if="category.id != selectedCategory">
+			<a href="#/category/{{category.id}}" 
+				 class="categoryButton">
+				<span class="categoryText">
+					{{category.name}}
+				</span>
+			</a>
+		</div>
+
+	</span>
+</div>
+
+<div id="categoryRightColumn">
+
+	<span ng-repeat="promo in catProms">
+		<div ng-if="promo.categoryId == selectedCategory">
+			<span class="saleCat">{{promo.description}}</span>
+		</div>
+	</span>
+
+	<table id="productTable">
+		<tr ng-repeat="product in products| filter:query | orderBy:orderProp" 
+				ng-class-odd="'lightBlue'" ng-class-even="'white'">
+
+			<td>
+				<img src="img/products/{{product.name}}.png" alt="{{product.name}}">
+			</td>
+
+			<td>
+				<b>{{product.name}}</b>
+				<br>
+				<span class="smallText">{{product.description}}</span>
+			</td>
+
+			<td>
+				{{setPrice(product.price)}}
+
+				<div ng-if="sale !== null">
+					{{setPrice(new_price / (1 - sale.discount / 100))}}
+				</div>
+
+				<div ng-if="catProms !== null">
+					<div ng-repeat="promo in catProms">
+						<div ng-if="promo.categoryId == selectedCategory">
+							{{setPrice(new_price / (1 - promo.discount / 100))}}
+						</div>
+					</div>
+				</div>
+
+				<div ng-if="catProms !== null || sale !== null">
+					<span style="text-decoration: line-through; color: red;">
+						<span style="color: gray;">
+							{{new_price| currency:"&euro;"}}
+						</span>
+					</span>							
+				</div>
+			</td>
+
+			<td>{{product.price| currency:"&euro;"}}</td>			
+
+			<td>
+				<form>
+					<button class="btn btn-primary" ng-click="addtoCart(product.id)">
+						add
+					</button>					
+				</form>
+			</td>
+
+			<td>
+				<span ng-repeat="promo in prodProms">
+					<div class = "productOffer" ng-if="promo.productId == product.id">
+						${{promo.description}}
+					</div>
+				</span>								
+			</td>
+		</tr>
+	</table>
+
+	<br>
+
+	<div class="form-group" style="width: 400px;	margin-left: 60px">
+		<label for="filter" class="col-sm-2 control-label">
+			filter products
+		</label>
+
+		<div class="col-sm-10">
+			<input type="text" class="form-control" name="filter"
+						 ng-minlength=1
+						 ng-maxlength=20
+						 ng-model="query"							 
+						 placeholder="Search on name, description or price">
+		</div>
+	</div>	
+
+	<br><br><br>
+
+	<div class="form-group" style="width: 400px;	margin-left: 60px">
+		<label for="sort" class="col-sm-2 control-label">
+			order
+		</label>
+
+		<div class="col-sm-10">
+      <select class="form-control" ng-model="orderProp" name="sort">
+        <option value="name">A-Z</option>
+        <option value="-name">Z-A</option>
+        <option value="price">price low-high</option>
+        <option value="-price">price high-low</option>
+      </select>
+		</div>
+	</div>	
+
+	<br><br>
+
+</div>

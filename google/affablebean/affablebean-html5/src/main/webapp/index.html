@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en" ng-app="myApp">
+
+	<head>
+		<meta charset="utf-8">
+		<title>The Affable Bean Green Grocer</title>
+
+		<link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">		
+		<link rel="stylesheet" href="css/bootstrap/animations.css">		
+		<link rel="stylesheet" href="css/app.css"/>
+
+		<script src="lib/jquery/jquery-1.10.2.js"></script>
+		<script src="lib/bootstrap/bootstrap.min.js"></script>
+
+		<script src="lib/angular/angular.min.js"></script>
+		<script src="lib/angular/angular-animate.min.js"></script>
+		<script src="lib/angular/angular-resource.min.js"></script>
+		<script src="lib/angular/angular-route.min.js"></script>
+
+		<script src="js/app.js"></script>
+		<script src="js/animations.js"></script>
+		<script src="js/controllers.js"></script>
+		<script src="js/directives.js"></script>
+		<script src="js/filters.js"></script>
+		<script src="js/services.js"></script>
+	</head>
+
+	<body ng-controller="indexCtrl">
+		<div id="main">
+			<div id="header">
+				<div id="widgetBar">
+
+					<!--language selection widget (not implemented)-->					
+					<div class="headerWidget">
+					</div>
+
+					<!--checkout widget-->					
+					<div class="headerWidget">
+						<span ng-if="cart.items > 0
+										&& location.path() != '/cart'
+										&& location.path() != '/checkout'
+										&& location.path() != '/confirmation'
+										&& location.path() != '/contact'
+										&& location.path() != '/privacy'">
+							<a href="#/checkout" class="bubble hMargin" 
+								 ng-bind-template="proceed to checkout &#x279f;"></a>
+						</span>						
+					</div>
+
+					<!--shopping cart widget-->					
+					<div class="headerWidget" id="viewCart">						
+						<img src="img/cart.gif" alt="shopping cart icon" id="cart">
+
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+						<span ng-if="cart.items > 0" 
+									ng-bind-template="{{cart.items}} item(s)">							
+						</span>
+
+						<span ng-if="cart.items > 0
+										&& location.path() != '/cart'
+										&& location.path() != '/confirmation'
+										&& location.path() != '/contact'
+										&& location.path() != '/privacy'">
+							<a href="#/cart" class="bubble" ng-bind-template="view cart"></a>
+						</span>
+					</div>					
+
+				</div>
+
+				<a href="#/main">
+					<img src="img/logo.png" id="logo" alt="Affable Bean logo">
+				</a>
+
+				<img src="img/logoText.png" id="logoText" alt="the affable bean">
+
+				<div ng-if="sale !== null">
+					<img class="sale" src="img/sales.jpg" id="saleText" 
+							 alt="sale now on!">
+					<br><br>					
+					<span class="saleText" ng-bind-template="{{sale.description}}"></span>
+				</div>
+
+			</div>
+
+			<div class="view-container">
+				<div ng-view class="view-frame"></div>
+			</div>			
+
+			<br>
+
+			<div id="footer">
+
+				<div ng-if="location.path() != '/main'">
+					<hr id="footerDivider1">
+					<p id="footerText1" class="reallySmallText">
+
+						<button class="btn btn-link" onclick="location.href = '#/privacy'">
+							Privacy Policy
+						</button>
+
+						&nbsp;&nbsp;::&nbsp;&nbsp;
+
+						<button class="btn btn-link" onclick="location.href = '#/contact'">
+							Contact Us
+						</button>
+
+						&nbsp;&nbsp;&copy;&nbsp;&nbsp;
+						2014 the affable bean company
+					</p>						
+				</div>
+
+				<div ng-if="location.path() == '/main'">
+					<hr id="footerDivider">
+					<p id="footerText" class="reallySmallText">
+
+						<button class="btn btn-link" onclick="location.href = '#/privacy'">
+							Privacy Policy
+						</button>
+
+						&nbsp;&nbsp;::&nbsp;&nbsp;
+
+						<button class="btn btn-link" onclick="location.href = '#/contact'">
+							Contact Us
+						</button>
+
+						&nbsp;&nbsp;&copy;&nbsp;&nbsp;
+						2014 the affable bean company
+					</p>						
+				</div>
+
+			</div>
+		</div>
+
+	</body>
+</html>
