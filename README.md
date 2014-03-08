@@ -94,6 +94,8 @@ JSP Web module: https://sylvan-cycle-510.appspot.com/index
 
 HTML5 module: https://sylvan-cycle-510.appspot.com/index2.html
 
+(press refresh if the images are loading incorrectly)
+
 
 Outro
 -----
