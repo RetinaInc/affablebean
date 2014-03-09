@@ -135,7 +135,7 @@
 		<realm-name>file</realm-name>
 		<form-login-config>
 			<form-login-page>/admin/login.jsp</form-login-page>
-			<!-- <form-error-page>/admin/error.jsp</form-error-page> -->
+			 <form-error-page>/admin/error.jsp</form-error-page> 
 		</form-login-config>
 	</login-config>
 	<!--Annotations in the AdminServlet (@ServletSecurity and @HttpConstraint) 
@@ -147,7 +147,7 @@
 			<url-pattern>/admin/*</url-pattern>
 		</web-resource-collection>
 		<auth-constraint>
-			<role-name>admin</role-name>
+			<role-name>*</role-name>
 		</auth-constraint>
 		<user-data-constraint>
 			<transport-guarantee>CONFIDENTIAL</transport-guarantee>
@@ -157,6 +157,6 @@
 		@HttpConstraint annotation -->
 	<security-role>
 		<description>access to administration console</description>
-		<role-name>admin</role-name>
+		<role-name>*</role-name>
 	</security-role>
 </web-app>

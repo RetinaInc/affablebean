@@ -28,9 +28,17 @@ public enum EntityMgr {
 							System.getProperty("cloudsql.url"));
 
 		} else {
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+			} catch (ClassNotFoundException e) {
+				throw new RuntimeException("Cannot find the driver in the classpath!", e);
+			}
+
 			properties.put("javax.persistence.jdbc.driver", "com.mysql.jdbc.Driver");
 			properties.put("javax.persistence.jdbc.url",
-							System.getProperty("cloudsql.url.dev"));
+							"jdbc:mysql://localhost:3306/affablebean");
+			properties.put("javax.persistence.jdbc.user", "root");
+			properties.put("javax.persistence.jdbc.password", "");
 		}
 
 		emf = Persistence.createEntityManagerFactory("AffableBeanPU", properties);

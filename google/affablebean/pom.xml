@@ -11,5 +11,6 @@
     <module>affablebean-web</module>
     <module>affablebean-ejb</module>
     <module>affablebean-html5</module>
+    <module>affablebean-deploy</module>
   </modules>
 </project>

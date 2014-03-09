@@ -287,6 +287,7 @@ public final class CustCtrl extends HttpServlet {
 					ABJson.indexResponse(response.getWriter(), getServletContext());
 					return;
 				}
+				url = "index.jsp";
 				break;
 
 			case "contact":
