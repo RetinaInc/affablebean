@@ -11,7 +11,6 @@ import com.affablebean.entity.Product;
 
 import java.io.Serializable;
 import java.util.*;
-import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
  * 
@@ -19,7 +18,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
  */
 public final class ShoppingCart implements Serializable {
 	private static final long serialVersionUID = 1L;
-	private final Queue<ShoppingCartItem> items = new ConcurrentLinkedQueue<>();
+	private final Queue<ShoppingCartItem> items = new LinkedList<>();
 
 	/**
 	 * Adds a <code>ShoppingCartItem</code> to the <code>ShoppingCart</code>'s

@@ -25,7 +25,7 @@ public enum EntityMgr {
 			properties.put("javax.persistence.jdbc.driver",
 							"com.mysql.jdbc.GoogleDriver");
 			properties.put("javax.persistence.jdbc.url",
-							System.getProperty("cloudsql.url"));
+							"jdbc:google:mysql://your-instance-name/affablebean");
 
 		} else {
 			try {
@@ -37,9 +37,10 @@ public enum EntityMgr {
 			properties.put("javax.persistence.jdbc.driver", "com.mysql.jdbc.Driver");
 			properties.put("javax.persistence.jdbc.url",
 							"jdbc:mysql://localhost:3306/affablebean");
-			properties.put("javax.persistence.jdbc.user", "root");
-			properties.put("javax.persistence.jdbc.password", "");
 		}
+
+		properties.put("javax.persistence.jdbc.user", "root");
+		properties.put("javax.persistence.jdbc.password", "");
 
 		emf = Persistence.createEntityManagerFactory("AffableBeanPU", properties);
 	}
