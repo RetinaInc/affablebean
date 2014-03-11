@@ -10,6 +10,7 @@ package com.affablebean.cart;
 import com.affablebean.entity.Product;
 
 import java.io.Serializable;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  *
@@ -20,7 +21,7 @@ public final class ShoppingCartItem implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private final Product product;
-	private short quantity = 1;
+	private final AtomicInteger quantity = new AtomicInteger(1);
 
 	public ShoppingCartItem(Product product) {
 		this.product = product;
@@ -31,24 +32,23 @@ public final class ShoppingCartItem implements Serializable {
 	}
 
 	public short getQuantity() {
-		return quantity;
+		return (short) quantity.get();
 	}
-
 
 	public double getTotal() {
-		return quantity * product.getPrice().doubleValue();
+		return quantity.doubleValue() * product.getPrice().doubleValue();
 	}
-
+	
 	void setQuantity(short quantity) {
-		this.quantity = quantity;
+		this.quantity.set(quantity);
 	}
 
 	void incrementQuantity() {
-		quantity++;
+		quantity.incrementAndGet();
 	}
 
 	void decrementQuantity() {
-		quantity--;
+		quantity.decrementAndGet();
 	}
 
 }

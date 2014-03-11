@@ -1,19 +1,25 @@
 package com.affablebean.session;
 
 import java.io.Serializable;
+
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import com.affablebean.entity.Product;
+
 import com.affablebean.entity.CustomerOrder;
 import com.affablebean.entity.OrderedProduct;
 import com.affablebean.entity.OrderedProductPK;
+import com.affablebean.entity.Product;
+
 import static com.affablebean.session.EntityMgr.EM;
 import static com.affablebean.session.CustomerOrderJpaController.CUST_ORD_CTL;
+
 import com.affablebean.session.exceptions.NonexistentEntityException;
 import com.affablebean.session.exceptions.PreexistingEntityException;
+
 import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 

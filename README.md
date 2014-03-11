@@ -96,8 +96,6 @@ HTML5 module: https://sylvan-cycle-510.appspot.com/index2.html
 
 (press refresh if the images are loading incorrectly)
 
-(use JSP module to clear cart if HTML5 not working)
-
 
 Outro
 -----

@@ -105,14 +105,24 @@ public final class CustCtrl extends HttpServlet {
 
 				break;
 
-			case "checkout":
-				// forward to checkout page and switch to a secure channel
-				break;
-
 			case "chooseLanguage":
 				userPath = setLanguage(request);
 				break;
 
+			case "contact":
+				if (json) {
+					ABJson.subjectList(response.getWriter(), getServletContext());
+					return;
+				}
+				break;
+				
+			case "main":
+				if (json) {
+					ABJson.mainResponse(response.getWriter(), getServletContext());
+					return;
+				}
+				break;
+				
 			case "viewCart":
 				checkCart(request);
 
@@ -280,27 +290,6 @@ public final class CustCtrl extends HttpServlet {
 					throws ServletException, IOException {
 
 		String url = "/WEB-INF/view/" + userPath + ".jsp";
-
-		switch (userPath) {
-			case "index":
-				if (json) {
-					ABJson.indexResponse(response.getWriter(), getServletContext());
-					return;
-				}
-				
-				url = "index.jsp";
-				break;
-
-			case "contact":
-				if (json) {
-					ABJson.subjectList(response.getWriter(), getServletContext());
-					return;
-				}
-				break;
-
-			default:
-		}
-
 		request.getRequestDispatcher(url).forward(request, response);
 	}
 
@@ -450,7 +439,7 @@ public final class CustCtrl extends HttpServlet {
 				break;
 
 			case "index":
-				ABJson.indexResponse(response, getServletContext());
+				ABJson.mainResponse(response, getServletContext());
 				break;
 
 			default:

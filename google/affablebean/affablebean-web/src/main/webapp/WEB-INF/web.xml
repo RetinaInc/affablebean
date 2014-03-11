@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
- * Copyright (c) 2010, Oracle and/or its affiliates. All rights reserved.
- *
- * You may not modify, use, reproduce, or distribute this software
- * except in compliance with the terms of the license at:
- * http://developer.sun.com/berkeley_license.html
- *
- * author: tgiunipero
--->
-<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
-	<!--CUSTOMER CONFIGURATION-->
-	<welcome-file-list>
-		<welcome-file>index.jsp</welcome-file>
-	</welcome-file-list>	
+<!-- * Copyright (c) 2010, Oracle and/or its affiliates. All rights reserved. 
+* * You may not modify, use, reproduce, or distribute this software * except 
+in compliance with the terms of the license at: * http://developer.sun.com/berkeley_license.html 
+* * author: tgiunipero -->
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee"
+				 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+				 xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+	<!--CUSTOMER CONFIGURATION -->
+	<welcome-file-list> 
+		<welcome-file>index2.html</welcome-file> 
+		<!--<welcome-file>index.jsp</welcome-file>--> 
+	</welcome-file-list> 
 	<filter-mapping>
 		<filter-name>TimeoutFilter</filter-name>
 		<servlet-name>Customer</servlet-name>
@@ -36,6 +34,7 @@
 		<url-pattern>/contact</url-pattern>
 		<url-pattern>/feedback</url-pattern>
 		<url-pattern>/index</url-pattern>
+		<url-pattern>/main</url-pattern>
 		<url-pattern>/privacy</url-pattern>
 		<url-pattern>/purchase</url-pattern>
 		<url-pattern>/showJSON</url-pattern>
@@ -72,14 +71,11 @@
 		<param-value>1</param-value>
 	</context-param>
 	<session-config>
-		<session-timeout>
-			10
-		</session-timeout>
+		<session-timeout>10</session-timeout>
 	</session-config>
 	<jsp-config>
 		<jsp-property-group>
 			<description>JSP configuration for the store front</description>
-			<url-pattern>/index.jsp</url-pattern>
 			<url-pattern>/WEB-INF/view/*</url-pattern>
 			<url-pattern>/WEB-INF/jspf/error/*</url-pattern>
 			<include-prelude>/WEB-INF/jspf/header.jspf</include-prelude>
@@ -87,9 +83,7 @@
 		</jsp-property-group>
 		<jsp-property-group>
 			<description>JSP configuration for the admin console</description>
-			<url-pattern>/admin/index.jsp</url-pattern>
-			<url-pattern>/admin/login.jsp</url-pattern>
-			<url-pattern>/admin/error.jsp</url-pattern>
+			<url-pattern>/admin/*</url-pattern>
 			<include-prelude>/admin/jspf/header.jspf</include-prelude>
 			<include-coda>/admin/jspf/footer.jspf</include-coda>
 		</jsp-property-group>
@@ -114,11 +108,11 @@
 			<http-method>GET</http-method>
 		</web-resource-collection>
 		<user-data-constraint>
-			<description/>
+			<description />
 			<transport-guarantee>CONFIDENTIAL</transport-guarantee>
 		</user-data-constraint>
 	</security-constraint>
-	<!--ADMIN CONFIGURATION-->
+	<!--ADMIN CONFIGURATION -->
 	<servlet>
 		<servlet-name>Admin</servlet-name>
 		<servlet-class>com.affablebean.controller.AdminCtrl</servlet-class>
@@ -134,16 +128,16 @@
 		<url-pattern>/admin/orderRecord</url-pattern>
 		<url-pattern>/admin/logout</url-pattern>
 	</servlet-mapping>
-	<login-config>
+<!--	<login-config>
 		<auth-method>FORM</auth-method>
 		<realm-name>file</realm-name>
 		<form-login-config>
 			<form-login-page>/admin/login.jsp</form-login-page>
-			<form-error-page>/admin/error.jsp</form-error-page>
+			<form-error-page>/admin/error.jsp</form-error-page> 
 		</form-login-config>
-	</login-config>
-	<!--Annotations in the AdminServlet (@ServletSecurity and @HttpConstraint) are
-	used instead of the <security-constraint> entry below-->
+	</login-config>-->
+	<!--Annotations in the AdminServlet (@ServletSecurity and @HttpConstraint) 
+	are used instead of the <security-constraint> entry below -->
 	<security-constraint>
 		<display-name>Admin</display-name>
 		<web-resource-collection>
@@ -151,16 +145,16 @@
 			<url-pattern>/admin/*</url-pattern>
 		</web-resource-collection>
 		<auth-constraint>
-			<role-name>affableBeanAdmin</role-name>
+			<role-name>admin</role-name>
 		</auth-constraint>
 		<user-data-constraint>
 			<transport-guarantee>CONFIDENTIAL</transport-guarantee>
 		</user-data-constraint>
 	</security-constraint>
 	<!--The <security-role> entry is not required if role is declared using 
-	@HttpConstraint annotation-->
-	<security-role>
+	@HttpConstraint annotation -->
+<!--	<security-role>
 		<description>access to administration console</description>
-		<role-name>affableBeanAdmin</role-name>
-	</security-role>
+		<role-name>admin</role-name>
+	</security-role>-->
 </web-app>

@@ -5,7 +5,7 @@
 angular.module('myApp.controllers', []).
 	controller('cartCtrl', ['$scope', '$http', '$routeParams', 'global',
 		function($scope, $http, $routeParams, global) {
-			var url = "/AffableBean/viewCart?json=true";
+			var url = "/viewCart?json=true";
 
 			if ($routeParams.clear == "true") {
 				url += "&clear=true";
@@ -26,7 +26,7 @@ angular.module('myApp.controllers', []).
 			$scope.updateCart = function(product, quantity) {
 				$http({
 					method: 'POST',
-					url: '/AffableBean/updateCart?productId=' + product + '&quantity='
+					url: '/updateCart?productId=' + product + '&quantity='
 						+ quantity + '&json=true'
 
 				}).success(function(data) {
@@ -42,7 +42,7 @@ angular.module('myApp.controllers', []).
 		}]).
 	controller('categoryCtrl', ['$scope', '$http', '$routeParams', 'global',
 		function($scope, $http, $routeParams, global) {
-			$http.get('/AffableBean/category?id=' + $routeParams.id + '&json=true')
+			$http.get('/category?id=' + $routeParams.id + '&json=true')
 				.success(function(data) {
 					$scope.catProms = data['categoryPromotions'];
 					$scope.prodProms = data['productPromotions'];
@@ -63,7 +63,7 @@ angular.module('myApp.controllers', []).
 			$scope.addtoCart = function(product) {
 				$http({
 					method: 'POST',
-					url: '/AffableBean/addToCart?productId=' + product + '&json=true'
+					url: '/addToCart?productId=' + product + '&json=true'
 
 				}).success(function(data) {
 					window.location.href = '#/category/' + $scope.selectedCategory;
@@ -88,7 +88,7 @@ angular.module('myApp.controllers', []).
 			$scope.purchase = function() {
 				$http({
 					method: 'POST',
-					url: '/AffableBean/purchase?json=true',
+					url: '/purchase?json=true',
 					data: $scope.customer
 
 				}).success(function(data) {
@@ -110,7 +110,7 @@ angular.module('myApp.controllers', []).
 		}]).
 	controller('contactCtrl', ['$scope', '$http', 'global',
 		function($scope, $http, global) {
-			$http.get('/AffableBean/contact?json=true')
+			$http.get('/contact?json=true')
 				.success(function(data) {
 					$scope.subjects = data;
 				});
@@ -125,7 +125,7 @@ angular.module('myApp.controllers', []).
 			$scope.sendMsg = function() {
 				$http({
 					method: 'POST',
-					url: '/AffableBean/feedback?json=true',
+					url: '/feedback?json=true',
 					data: $scope.msg
 
 				}).success(function(data) {
@@ -152,7 +152,7 @@ angular.module('myApp.controllers', []).
 		}]).
 	controller('mainCtrl', ['$scope', 'global', '$http',
 		function($scope, global, $http) {
-			$http.get('/AffableBean/categoryList?json=true')
+			$http.get('/categoryList?json=true')
 				.success(function(data) {
 					$scope.categories = data;
 				});

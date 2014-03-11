@@ -97,7 +97,7 @@ public final class AdminCtrl extends HttpServlet {
 
 			case "/admin/logout":
 				request.getSession().invalidate();   // terminate session
-				response.sendRedirect("/AffableBean/admin/");
+				response.sendRedirect("/admin/");
 				return;
 
 			default:

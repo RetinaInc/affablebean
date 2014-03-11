@@ -9,10 +9,13 @@ package com.affablebean.controller;
 
 import com.affablebean.entity.Customer;
 import com.affablebean.entity.MsgFeedback;
+
 import java.io.IOException;
 import java.util.Map;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
+
 import static com.affablebean.session.OrderManager.ORD_MGR;
 import static com.affablebean.session.CustomerJpaController.CUST_CTL;
 import static com.affablebean.session.CustomerOrderJpaController.CUST_ORD_CTL;
@@ -94,7 +97,7 @@ public final class AdminCtrl extends HttpServlet {
 
 			case "/admin/logout":
 				request.getSession().invalidate();   // terminate session
-				response.sendRedirect("/AffableBean/admin/");
+				response.sendRedirect("/admin/");
 				return;
 
 			default:

@@ -17,11 +17,10 @@
 				
 	<properties>
 		<appengine.app.appId>your-app-id</appengine.app.appId>
-		<appengine.app.version>1</appengine.app.version>
+		<appengine.app.version></appengine.app.version>
 		<appengine.target.version>1.9.0</appengine.target.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<cloudsql.url>jdbc:google:mysql://your-instance-name/affablebean?user=root</cloudsql.url>
-		<cloudsql.url.dev>jdbc:mysql://localhost:3306/affablebean?user=root</cloudsql.url.dev>
+
 	</properties>
 
 	<dependencies>
@@ -47,11 +46,6 @@
 			<artifactId>jackson-core</artifactId>
 			<version>2.3.1</version>
 		</dependency>
-		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>affablebean-ejb</artifactId>
-			<version>${project.version}</version>
-		</dependency>
 
 		<!-- Test Dependencies -->
 		<dependency>
@@ -66,6 +60,11 @@
 			<version>${appengine.target.version}</version>
 			<scope>test</scope>
 		</dependency>
+	 <dependency>
+	  <groupId>${project.groupId}</groupId>
+	  <artifactId>affablebean-ejb</artifactId>
+	  <version>${project.version}</version>
+	 </dependency>
 	</dependencies>
 
 	<build>

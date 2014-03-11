@@ -4,10 +4,8 @@
 	<version>${appengine.app.version}</version>
 	<threadsafe>true</threadsafe>
 	<use-google-connector-j>true</use-google-connector-j>
-
+	<sessions-enabled>true</sessions-enabled>
 	<system-properties>
-		<property name="java.util.logging.config.file" value="WEB-INF/logging.properties"/>
-		<property name="cloudsql.url" value="${cloudsql.url}"/>
-		<property name="cloudsql.url.dev" value="${cloudsql.url.dev}"/>
+		<property name="java.util.logging.config.file" value="WEB-INF/logging.properties" />
 	</system-properties>
 </appengine-web-app>

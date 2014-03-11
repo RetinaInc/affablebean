@@ -1,10 +1,14 @@
 package com.affablebean.session;
 
 import com.affablebean.entity.Promotion;
+
 import static com.affablebean.session.EntityMgr.EM;
+
 import com.affablebean.session.exceptions.NonexistentEntityException;
+
 import java.io.Serializable;
 import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;

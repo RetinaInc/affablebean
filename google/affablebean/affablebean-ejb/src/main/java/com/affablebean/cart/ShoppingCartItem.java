@@ -8,13 +8,17 @@
 package com.affablebean.cart;
 
 import com.affablebean.entity.Product;
+
+import java.io.Serializable;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  *
  * @author tgiunipero
  */
-public final class ShoppingCartItem {
+public final class ShoppingCartItem implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	private final Product product;
 	private final AtomicInteger quantity = new AtomicInteger(1);
@@ -31,20 +35,20 @@ public final class ShoppingCartItem {
 		return (short) quantity.get();
 	}
 
-	public void setQuantity(short quantity) {
-		this.quantity.set(quantity);;
+	public double getTotal() {
+		return quantity.doubleValue() * product.getPrice().doubleValue();
+	}
+	
+	void setQuantity(short quantity) {
+		this.quantity.set(quantity);
 	}
 
-	public void incrementQuantity() {
+	void incrementQuantity() {
 		quantity.incrementAndGet();
 	}
 
-	public void decrementQuantity() {
+	void decrementQuantity() {
 		quantity.decrementAndGet();
-	}
-
-	public double getTotal() {
-		return quantity.doubleValue() * product.getPrice().doubleValue();
 	}
 
 }

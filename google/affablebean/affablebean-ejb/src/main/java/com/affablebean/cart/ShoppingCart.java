@@ -8,6 +8,8 @@
 package com.affablebean.cart;
 
 import com.affablebean.entity.Product;
+
+import java.io.Serializable;
 import java.util.*;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
@@ -15,8 +17,9 @@ import java.util.concurrent.ConcurrentLinkedQueue;
  *
  * @author tgiunipero
  */
-public final class ShoppingCart {
+public final class ShoppingCart implements Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private final Queue<ShoppingCartItem> items = new ConcurrentLinkedQueue<>();
 
 	/**
@@ -33,7 +36,7 @@ public final class ShoppingCart {
 		boolean newItem = true;
 
 		for (ShoppingCartItem scItem : items) {
-			if (scItem.getProduct().getId() == product.getId()) {
+			if (scItem.getProduct().getId().equals(product.getId())) {
 				newItem = false;
 				scItem.incrementQuantity();
 				break;
@@ -68,7 +71,7 @@ public final class ShoppingCart {
 		ShoppingCartItem item = null;
 
 		for (ShoppingCartItem scItem : items) {
-			if (scItem.getProduct().getId() == product.getId()) {
+			if (scItem.getProduct().getId().equals(product.getId())) {
 				if (qty != 0) {
 					scItem.setQuantity(qty);
 				} else {

@@ -1,15 +1,21 @@
 package com.affablebean.session;
 
-import com.affablebean.entity.MsgFeedback;
 import java.io.Serializable;
+
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+
+import com.affablebean.entity.MsgFeedback;
 import com.affablebean.entity.MsgSubject;
+
 import static com.affablebean.session.EntityMgr.EM;
+
 import com.affablebean.session.exceptions.NonexistentEntityException;
+
 import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 

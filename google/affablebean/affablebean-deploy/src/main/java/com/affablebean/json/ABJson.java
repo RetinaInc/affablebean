@@ -138,7 +138,7 @@ public final class ABJson {
 		}
 	}
 
-	public static void indexResponse(Writer response, ServletContext ctx) {
+	public static void mainResponse(Writer response, ServletContext ctx) {
 		try (JsonGenerator gen = jfactory.createGenerator(response)) {
 			gen.writeStartObject();
 

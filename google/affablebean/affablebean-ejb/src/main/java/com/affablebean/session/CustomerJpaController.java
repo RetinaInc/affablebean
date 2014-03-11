@@ -1,18 +1,24 @@
 package com.affablebean.session;
 
-import com.affablebean.entity.Customer;
 import java.io.Serializable;
+
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+
+import com.affablebean.entity.Customer;
 import com.affablebean.entity.CustomerOrder;
+
 import static com.affablebean.session.EntityMgr.EM;
+
 import com.affablebean.session.exceptions.IllegalOrphanException;
 import com.affablebean.session.exceptions.NonexistentEntityException;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 

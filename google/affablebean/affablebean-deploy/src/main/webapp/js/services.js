@@ -66,7 +66,7 @@ angular.module('myApp.services', []).
 		};
 	}).factory('Init', ['$resource',
 	function($resource) {
-		return $resource('/index?json=true', {}, {
+		return $resource('/main?json=true', {}, {
 			query: {method: 'GET', isObject: true}
 		});
 	}]).factory('Cart', ['$resource',

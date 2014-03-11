@@ -14,10 +14,12 @@ import com.affablebean.entity.CustomerOrder;
 import com.affablebean.entity.OrderedProduct;
 import com.affablebean.entity.OrderedProductPK;
 import com.affablebean.entity.Product;
+
 import static com.affablebean.session.EntityMgr.EM;
 import static com.affablebean.session.CustomerOrderJpaController.CUST_ORD_CTL;
 import static com.affablebean.session.OrderedProductJpaController.ORD_PROD_CTL;
 import static com.affablebean.session.ProductJpaController.PROD_CTL;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -26,6 +28,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
