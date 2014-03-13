@@ -8,8 +8,8 @@ in compliance with the terms of the license at: * http://developer.sun.com/berke
 				 xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
 	<!--CUSTOMER CONFIGURATION -->
 	<welcome-file-list> 
+		<welcome-file>index.html</welcome-file> 
 		<welcome-file>index2.html</welcome-file> 
-		<!--<welcome-file>index.jsp</welcome-file>--> 
 	</welcome-file-list> 
 	<filter-mapping>
 		<filter-name>TimeoutFilter</filter-name>

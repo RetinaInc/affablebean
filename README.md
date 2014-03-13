@@ -1,6 +1,3 @@
-Enterprise Highlights
-=====================
-
 AffableBean (osmanpub revision)
 ===============================
 
@@ -21,8 +18,8 @@ Requirements
 You'll need Jave EE 7 with Glassfish 4.0 installed along with MySQL 5 or later.
 The project uses Maven with modules for the back, middle and front tiers. 
 
-Checkout the code from https://github.com/osmanpub/ee.git and navigate to 
-oracle/case-studies/affablebean from your IDE to load the master POM file.
+Checkout the code from https://github.com/osmanpub/affablebean.git and navigate to 
+either the oracle or google folder from your IDE to load the master POM file.
 Do an initial build to see if your installation and configuration are working.
 
 Next run the code, if you have problems then chances are they could be database
@@ -90,7 +87,7 @@ Changes:
 Google Hosting
 --------------
 
-JSP Web module: https://sylvan-cycle-510.appspot.com/index
+JSP Web module: https://sylvan-cycle-510.appspot.com/
 
 HTML5 module: https://sylvan-cycle-510.appspot.com/index2.html
 
