@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.affablebean.entity;
 
 import java.io.Serializable;
@@ -43,27 +42,28 @@ import javax.xml.bind.annotation.XmlTransient;
 	@NamedQuery(name = "Product.findByDescription", query = "SELECT p FROM Product p WHERE p.description = :description"),
 	@NamedQuery(name = "Product.findByLastUpdate", query = "SELECT p FROM Product p WHERE p.lastUpdate = :lastUpdate")})
 public class Product implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 	@Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Basic(optional = false)
-  @Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Basic(optional = false)
+	@Column(name = "id")
 	private Integer id;
 	@Basic(optional = false)
-  @Column(name = "name")
+	@Column(name = "name")
 	private String name;
 	// @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
 	@Basic(optional = false)
-  @Column(name = "price")
+	@Column(name = "price")
 	private BigDecimal price;
 	@Column(name = "description")
 	private String description;
 	@Basic(optional = false)
-  @Column(name = "last_update")
-  @Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "last_update")
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date lastUpdate;
 	@JoinColumn(name = "category_id", referencedColumnName = "id")
-  @ManyToOne(optional = false)
+	@ManyToOne(optional = false)
 	private Category categoryId;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
 	private Collection<OrderedProduct> orderedProductCollection;
@@ -80,6 +80,15 @@ public class Product implements Serializable {
 		this.name = name;
 		this.price = price;
 		this.lastUpdate = lastUpdate;
+	}
+
+	public Product(Integer id, String name, BigDecimal price, String description,
+					Category categoryId) {
+		this.id = id;
+		this.name = name;
+		this.price = price;
+		this.description = description;
+		this.categoryId = categoryId;
 	}
 
 	public Integer getId() {
@@ -163,5 +172,5 @@ public class Product implements Serializable {
 	public String toString() {
 		return "com.affablebean.entity1.Product[ id=" + id + " ]";
 	}
-	
+
 }

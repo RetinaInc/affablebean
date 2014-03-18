@@ -9,6 +9,7 @@ package com.affablebean.controller;
 
 import com.affablebean.cart.ShoppingCart;
 import com.affablebean.cart.ShoppingCartItem;
+import com.affablebean.economy.FakeDB;
 import com.affablebean.entity.Category;
 import com.affablebean.entity.Customer;
 import com.affablebean.entity.CustomerOrder;
@@ -61,11 +62,20 @@ public final class CustCtrl extends HttpServlet {
 		// economy setting to reduct hosting costs
 		economy = (getServletContext().getInitParameter("economy").equalsIgnoreCase("1"));
 
-		getServletContext().setAttribute("categories", CAT_CTL.findCategories());
-		getServletContext().setAttribute("subjects", MSG_SUB_CTL.findSubjects());
-		getServletContext().setAttribute("sale", PROMO_CTL.findSale());
-		getServletContext().setAttribute("catProms", PROMO_CTL.findCategories());
-		getServletContext().setAttribute("prodProms", PROMO_CTL.findProducts());
+		if (!economy) {
+			getServletContext().setAttribute("categories", CAT_CTL.findCategories());
+			getServletContext().setAttribute("subjects", MSG_SUB_CTL.findSubjects());
+			getServletContext().setAttribute("sale", PROMO_CTL.findSale());
+			getServletContext().setAttribute("catProms", PROMO_CTL.findCategories());
+			getServletContext().setAttribute("prodProms", PROMO_CTL.findProducts());
+
+		} else {
+			getServletContext().setAttribute("categories", FakeDB.findCategories());
+			getServletContext().setAttribute("subjects", FakeDB.findSubjects());
+			getServletContext().setAttribute("sale", FakeDB.findSale());
+			getServletContext().setAttribute("catProms", FakeDB.findCatProms());
+			getServletContext().setAttribute("prodProms", FakeDB.findProdProms());
+		}
 	}
 
 	/**
@@ -115,14 +125,14 @@ public final class CustCtrl extends HttpServlet {
 					return;
 				}
 				break;
-				
+
 			case "main":
 				if (json) {
 					ABJson.mainResponse(response.getWriter(), getServletContext());
 					return;
 				}
 				break;
-				
+
 			case "viewCart":
 				checkCart(request);
 
@@ -270,7 +280,9 @@ public final class CustCtrl extends HttpServlet {
 		String productId = request.getParameter("productId");
 
 		if (!productId.isEmpty()) {
-			Product product = PROD_CTL.findProduct(Integer.parseInt(productId));
+			int id = Integer.parseInt(productId);
+			Product product = (!economy)
+							? PROD_CTL.findProduct(id) : FakeDB.findProduct(id);
 			cart.addItem(product);
 		}
 	}
@@ -334,12 +346,16 @@ public final class CustCtrl extends HttpServlet {
 		if (categoryId != null) {
 			HttpSession session = request.getSession();
 			short id = Short.parseShort(categoryId);
-			Category selectedCategory = CAT_CTL.findCategory(id);
 
-			// place selected category in session scope
-			session.setAttribute("selectedCategory", selectedCategory);
-			session.setAttribute("categoryProducts",
-							PROD_CTL.findAllCategoryProducts(id));
+			if (!economy) {
+				session.setAttribute("selectedCategory", CAT_CTL.findCategory(id));
+				session.setAttribute("categoryProducts",
+								PROD_CTL.findAllCategoryProducts(id));
+
+			} else {
+				session.setAttribute("selectedCategory", FakeDB.findCategory(id));
+				session.setAttribute("categoryProducts", FakeDB.findAllCategoryProducts(id));
+			}
 		}
 	}
 
@@ -564,7 +580,9 @@ public final class CustCtrl extends HttpServlet {
 		String quantity = request.getParameter("quantity");
 
 		if (Validator.validateQuantity(productId, quantity)) {
-			Product product = PROD_CTL.findProduct(Integer.parseInt(productId));
+			int id = Integer.parseInt(productId);
+			Product product = (!economy)
+							? PROD_CTL.findProduct(id) : FakeDB.findProduct(id);
 			HttpSession session = request.getSession();
 			ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
 			cart.update(product, quantity);
