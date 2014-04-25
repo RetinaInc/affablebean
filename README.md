@@ -87,9 +87,9 @@ Changes:
 Google Hosting
 --------------
 
-JSP Web module: https://sylvan-cycle-510.appspot.com/
+JSP Web module: https://vivid-lambda-561.appspot.com/
 
-HTML5 module: https://sylvan-cycle-510.appspot.com/index2.html
+HTML5 module: https://vivid-lambda-561.appspot.com/index2.html
 
 (press refresh if the images are loading incorrectly)
 

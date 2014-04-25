@@ -25,7 +25,7 @@ public enum EntityMgr {
 			properties.put("javax.persistence.jdbc.driver",
 							"com.mysql.jdbc.GoogleDriver");
 			properties.put("javax.persistence.jdbc.url",
-							"jdbc:google:mysql://your-instance-name/affablebean");
+							"jdbc:google:mysql://apt-perception-499:affablebean/affablebean");
 
 		} else {
 			try {
